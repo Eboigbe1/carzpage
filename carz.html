@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>About Cars</title>
+  <meta name="description" content="A concise, accessible single-page guide to common car types, main components, and a short history." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#111111" />
+
+  <style>
+    :root{
+      --bg: #0b0b0b;
+      --panel: #0f0f10;
+      --muted: rgba(255,255,255,0.65);
+      --text: #ffffff;
+      --accent: #0b5cff;
+      --card: #0b0b0c;
+      --radius: 6px;
+      --gap: clamp(0.75rem, 1.5vw, 1.2rem);
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      html { scroll-behavior: auto; }
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+    *, *::before, *::after { box-sizing: border-box; }
+
+    /* Skip link for keyboard users */
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+    .skip-link:focus {
+      left: 1rem;
+      top: 1rem;
+      width: auto;
+      height: auto;
+      padding: .5rem .75rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 4px;
+      z-index: 999;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      line-height: 1.5;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    header {
+      background: #c62828; /* red */
+      color: #fff;
+      padding: 1rem 1.25rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      justify-content: space-between;
+    }
+
+    h1 {
+      font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+      margin: 0;
+      line-height: 1;
+    }
+
+    nav {
+      margin-top: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: .5rem;
+      padding: 0;
+      margin: 0;
+      align-items: center;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: .35rem .5rem;
+      border-radius: 4px;
+      font-size: .95rem;
+    }
+
+    nav a:focus,
+    nav a:hover {
+      background: rgba(255,255,255,0.08);
+      outline: none;
+    }
+
+    main.container {
+      max-width: 960px;
+      margin: 1.25rem auto;
+      padding: 1.25rem;
+      background: var(--panel);
+      border-radius: 8px;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+    }
+
+    section {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    section:last-of-type { border-bottom: none; }
+
+    h2 {
+      margin: 0 0 .75rem 0;
+      color: var(--text);
+      font-size: 1.125rem;
+    }
+
+    p { margin: 0 0 .75rem 0; color: var(--text); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--gap);
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      padding: 1rem;
+      min-height: 8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow: hidden; /* prevent card layout shifting when images are fixed */
+    }
+
+    .card h3 { margin: 0 0 .5rem 0; color: var(--text); font-size: 1rem; }
+
+    /* header brand + images */
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .header-image {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 6px;
+      flex-shrink: 0;
+      flex: 0 0 48px; /* keep fixed size */
+    }
+
+    /* card images: fixed displayed size so images remain the same across cards */
+    .card img.card-img {
+      width: 100%;
+      height: 140px;           /* fixed displayed height */
+      min-height: 140px;
+      max-height: 140px;
+      aspect-ratio: 16 / 9;    /* keeps consistent ratio in supporting browsers */
+      object-fit: cover;       /* crop to fit without distortion */
+      border-radius: calc(var(--radius) - 2px);
+      margin-bottom: .5rem;
+      display: block;
+    }
+
+    footer.footer {
+      text-align: center;
+      font-size: .9rem;
+      color: var(--text);
+      padding: 1rem 0 2rem;
+    }
+
+    /* Visible focus for keyboard navigation (use :focus-visible where supported) */
+    :focus {
+      outline: none;
+    }
+    :focus-visible {
+      outline: 3px solid #ffbf47; /* high-contrast focus ring */
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    /* Dark mode (optional) */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0b0b;
+        --panel: #0f0f10;
+        --muted: rgba(255,255,255,0.65);
+        --text: #ffffff;
+        --accent: #0b5cff;
+        --card: #0b0b0c;
+      }
+      header { background: #c62828; color: #fff; }
+      .skip-link:focus { background: var(--accent); }
+    }
+
+    /* Accessibility: increased tap target for small screens */
+    @media (max-width: 480px) {
+      nav a { padding: .5rem .75rem; font-size: 1rem; }
+      .card { padding: 1rem; }
+    }
+    /* Form styles */
+    .form {
+      display: grid;
+      gap: .75rem;
+      grid-template-columns: 1fr;
+      max-width: 720px;
+    }
+    .form-group { display:flex; flex-direction:column; gap:.25rem; }
+    label { font-size: .9rem; color: var(--muted); }
+    input[type="text"], input[type="number"], select {
+      padding:.5rem .6rem; border-radius:6px; border:1px solid rgba(255,255,255,0.06);
+      background: #0b0b0c; color:var(--text);
+    }
+    .field-error { color:#ffb4a2; font-size:.9rem; margin-top:.25rem; }
+    .success-message { background: #143b1f; color: #b7f0ba; padding: .6rem .75rem; border-radius:6px; margin-top: .5rem; }
+    button.btn { padding:.6rem .9rem; background:var(--accent); color:#fff; border:none; border-radius:6px; cursor:pointer; }
+    button.btn:focus{ outline:3px solid #ffbf47; outline-offset:2px; }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header>
+    <div class="wrap">
++      <div class="header-brand">
++        <img src="images/header.jpg" alt="Stylised car illustration" class="header-image" width="48" height="48" loading="eager">
++        <h1>CARZ</h1>
++      </div>
+      <nav aria-label="Primary navigation">
+        <ul>
+          <li><a href="#types">Car Types</a></li>
+          <li><a href="#components">Components</a></li>
+          <li><a href="#history">Brief History</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="container" role="main">
+    <!-- Intro -->
+    <section id="intro" aria-labelledby="intro-title">
+      <h2 id="intro-title">Welcome 2 CARZ</h2>
+      <p>
+        This single page gives a quick overview of common car types, their main components,
+        and a short history of how cars developed over time.
+      </p>
+    </section>
+
+
+    <!-- Car Types -->
+    <section id="types" aria-labelledby="types-title">
+      <h2 id="types-title">Car Types</h2>
+      <div class="grid" role="list">
+        <article class="card" role="listitem" aria-labelledby="sedan">
+          <img src="images/sedan.jpg" class="card-img" loading="lazy" width="800" height="450" >
+          <h3 id="sedan">Sedan</h3>
+          <p>A comfortable passenger car with four doors and a separate boot, suited for family transport.</p>
+        </article>
+
+        <article class="card" role="listitem" aria-labelledby="suv">
+          <img src="images/suv.jpg" class="card-img" loading="lazy" width="800" height="450" >
+          <h3 id="suv">SUV</h3>
+          <p>Taller vehicles with increased ground clearance and more interior space—often with light off-road capability.</p>
+        </article>
+
+        <article class="card" role="listitem" aria-labelledby="sportscar">
+          <img src="images/sportscar.jpg" class="card-img" loading="lazy" width="800" height="450" >
+          <h3 id="sportscar">Sports Car</h3>
+          <p>Performance-focused cars prioritizing power, handling, and reduced weight—often two-seaters.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Components -->
+    <section id="components" aria-labelledby="components-title">
+      <h2 id="components-title">Main Components</h2>
+      <div class="grid" role="list">
+        <article class="card" role="listitem" aria-labelledby="engine">
+          <h3 id="engine">Engine</h3>
+    <img src="images/engine.jpg" class="card-img" loading="lazy" width="800" height="450" >
+          <p>The engine converts fuel or electrical energy into motion that turns the wheels.</p>
+        </article>
+
+        <article class="card" role="listitem" aria-labelledby="transmission">
+          <h3 id="transmission">Transmission</h3>
+          <img src="images/transmission.jpg" class="card-img" loading="lazy" width="800" height="450" >
+          <p>Transfers power from the engine to the wheels and allows speed control through gears.</p>
+        </article>
+
+        <article class="card" role="listitem" aria-labelledby="brakes">
+          <h3 id="brakes">Brakes</h3>
+          <img src="images/brakes.jpg" class="card-img" loading="lazy" width="800" height="450">
+          <p>Slows or stops the vehicle using friction at the wheels; controlled by the brake pedal.</p>
+        </article>
+
+        <article class="card" role="listitem" aria-labelledby="chassis">
+          <h3 id="chassis">Chassis &amp; Body</h3>
+          <img src="images/body.jpg" class="card-img" loading="lazy" width="800" height="450" >
+          <p>The structural frame that supports components and protects passengers.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Request a Car (user input) -->
+    <section id="request" aria-labelledby="request-title">
+      <h2 id="request-title">Request a Car</h2>
+      <form id="car-request-form" class="form" action="#" method="post" aria-label="Car request form" novalidate>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your full name" required aria-describedby="name-error">
+          <div id="name-error" class="field-error" aria-live="polite"></div>
+        </div>
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input id="age" name="age" type="number" min="16" max="120" placeholder="Your age" required aria-describedby="age-error">
+          <div id="age-error" class="field-error" aria-live="polite"></div>
+        </div>
+        <div class="form-group">
+          <label for="car-type">Type of car you want</label>
+          <select id="car-type" name="car_type" required aria-describedby="type-error">
+            <option value="">Choose a type</option>
+            <option>Sedan</option>
+            <option>SUV</option>
+            <option>Sports Car</option>
+            <option>Hatchback</option>
+            <option>Convertible</option>
+            <option>Electric</option>
+            <option>Other</option>
+          </select>
+          <div id="type-error" class="field-error" aria-live="polite"></div>
+        </div>
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input id="location" name="location" type="text" placeholder="City, state or postcode" required aria-describedby="location-error">
+          <div id="location-error" class="field-error" aria-live="polite"></div>
+        </div>
+        <div id="form-errors" class="field-error" role="alert" aria-live="assertive" style="display:none; margin-bottom:.5rem;"></div>
+        <div>
+          <button type="submit" class="btn">Submit request</button>
+        </div>
+        <div id="form-success" class="success-message" role="status" aria-live="polite" style="display:none;"></div>
+      </form>
+    </section>
+    <!-- History -->
+    <section id="history" aria-labelledby="history-title">
+      <h2 id="history-title">Brief History of Cars</h2>
+      <p> Cars evolved from experimental steam vehicles into today’s complex, computerised machines over roughly 250 years.
+ Early experiments (1700s–1800s)</p>
+      <p>
+- In 1769, Nicolas-Joseph Cugnot built a three wheeled steam vehicle, often considered the first self propelled road vehicle.
+- Steam carriages appeared in Europe in the late 18th and early 19th centuries, but they were heavy, slow, and impractical for everyday use.
+- Inventors also tried early internal combustion and electric vehicles in the 1800s, including François Isaac de Rivaz’s combustion powered design in 1808 and Gustave Trouvé’s electric tricycle in 1881.
+</p>
+<p> Birth of the modern car (1880s–1910s) </p>
+<p> - The modern car is usually dated to 1886, when Karl Benz patented the Benz Patent Motorwagen, a three wheeled, gasoline powered vehicle designed for regular road use.
+- Bertha Benz’s famous long distance drive in 1888 demonstrated that the car was reliable enough for real travel and helped create public interest.
+- By 1900, manufacturers in Germany, France, and the United States were producing cars in small series, and designs began to standardise with front mounted engines, gearboxes, and rear wheel drive (the “Système Panhard”).
+</p>
+<p> 
+ Mass production and everyday use (1900s–1950s)
+</p>
+<P> - Ransom Olds’ Curved Dash Oldsmobile (1901) and then Henry Ford’s Model T (1908) introduced assembly line manufacturing, making cars much cheaper and accessible to ordinary people.
+- Early cars lacked features like windshields, doors, seat belts, and electric starters; these were gradually added in the early 20th century, improving comfort and safety.
+- By the 1920s and 1930s, cars with stronger engines (such as V8s), enclosed bodies, and more reliable brakes brought higher speeds and longer trips, embedding car travel into everyday life.
+</P>
+<p> Safety, style, and performance (1950s–1990s)</p>
+<p> - After the Second World War, car ownership expanded rapidly, and manufacturers focused on more powerful engines, distinctive styling, and higher speeds.
+- Safety technologies such as crumple zones, seat belts, improved glass, and later anti lock brakes were introduced as governments and engineers reacted to rising crash rates.
+- Fuel crises in the 1970s pushed development of smaller, more efficient cars, and electronic controls and fuel injection in the 1980s and 1990s improved performance while reducing emissions.
+ </p>
+ <p> Digital era and future directions (2000s–today) </p>
+ <p>- Modern cars rely heavily on electronics, using computer networks for engine management, stability control, infotainment, and advanced driver assistance systems like lane keeping and automatic emergency braking.
+- Hybrid and fully electric cars have moved from niche products to mainstream options, revisiting early electric ideas but with modern batteries and software.
+- Current development focuses on cleaner propulsion (electric and alternative fuels), connectivity, and varying levels of self driving capability, continuing the long evolution from simple steam carriages to today’s highly integrated vehicles.
+ </p>
+      <p><strong><time datetime="1880">Late 1800s:</time></strong> Early experimental cars used steam, electricity, and gasoline engines.</p>
+      <p><strong><time datetime="1900">Early 1900s:</time></strong> Mass production, including moving assembly lines, made cars more affordable.</p>
+      <p><strong><time datetime="1970">Late 1900s:</time></strong> Safety features, electronics, and fuel-efficient engines became common.</p>
+      <p><strong><time datetime="2020">Today:</time></strong> Cars include computers, driver-assist systems, and electric powertrains.</p>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    &copy; 2026 Car Guide – Single Page Overview of Cars. All rights reserved.
+  </footer>
+
+  <script>
+    (function () {
+      const form = document.getElementById('car-request-form');
+      const nameEl = document.getElementById('name');
+      const ageEl = document.getElementById('age');
+      const typeEl = document.getElementById('car-type');
+      const locationEl = document.getElementById('location');
+      const successEl = document.getElementById('form-success');
+      const errorsEl = document.getElementById('form-errors');
+
+      function setError(el, message) {
+        const err = document.getElementById(el.id + '-error');
+        if (message) {
+          el.setAttribute('aria-invalid', 'true');
+          err.textContent = message;
+        } else {
+          el.removeAttribute('aria-invalid');
+          err.textContent = '';
+        }
+      }
+
+      function validateName() {
+        const v = nameEl.value.trim();
+        if (!v) return 'Please enter your name.';
+        if (v.length < 2) return 'Please enter a longer name (at least 2 characters).';
+        if (v.length > 70) return 'Name is too long (max 70 characters).';
+        // Allow letters, combining marks, spaces, apostrophes, hyphens, dots
+        if (!/^[\p{L}\p{M}\s'’\-\.]+$/u.test(v)) return 'Name contains invalid characters.';
+        return '';
+      }
+
+      function validateAge() {
+        const v = ageEl.value.trim();
+        if (!v) return 'Please enter your age.';
+        if (!/^\d+$/.test(v)) return 'Age must be a whole number.';
+        const n = Number(v);
+        if (n < 16 || n > 120) return 'Enter an age between 16 and 120.';
+        return '';
+      }
+
+      function validateType() {
+        if (!typeEl.value) return 'Please choose the type of car you want.';
+        return '';
+      }
+
+      function validateLocation() {
+        const v = locationEl.value.trim();
+        if (!v) return 'Please enter your location.';
+        if (v.length < 2) return 'Please enter a more specific location.';
+        if (v.length > 100) return 'Location is too long (max 100 characters).';
+        // Allow letters, numbers, punctuation commonly used in addresses
+        if (!/^[\p{L}0-9\s,.'\-#()]+$/u.test(v)) return 'Location contains unexpected characters.';
+        return '';
+      }
+
+      function focusFirstInvalid() {
+        const first = form.querySelector('[aria-invalid="true"]');
+        if (first) first.focus();
+      }
+
+      function showFormErrors(list) {
+        if (!errorsEl) return;
+        if (!list || list.length === 0) {
+          errorsEl.style.display = 'none';
+          errorsEl.innerHTML = '';
+          return;
+        }
+        errorsEl.style.display = 'block';
+        errorsEl.innerHTML = '<ul><li>' + list.map(e => e).join('</li><li>') + '</li></ul>';
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const errors = [];
+        const nameErr = validateName();
+        if (nameErr) { setError(nameEl, nameErr); errors.push(nameErr); } else setError(nameEl, '');
+        const ageErr = validateAge();
+        if (ageErr) { setError(ageEl, ageErr); errors.push(ageErr); } else setError(ageEl, '');
+        const typeErr = validateType();
+        if (typeErr) { setError(typeEl, typeErr); errors.push(typeErr); } else setError(typeEl, '');
+        const locErr = validateLocation();
+        if (locErr) { setError(locationEl, locErr); errors.push(locErr); } else setError(locationEl, '');
+
+        showFormErrors(errors);
+
+        if (errors.length) {
+          focusFirstInvalid();
+          successEl.style.display = 'none';
+          return;
+        }
+
+        // All good — show a simple success message (no server submission here).
+        successEl.style.display = 'block';
+        successEl.textContent = `Thanks, ${nameEl.value.trim()}. Request received for a ${typeEl.value} in ${locationEl.value.trim()}.`;
+        form.reset();
+        [nameEl, ageEl, typeEl, locationEl].forEach(el => setError(el, ''));
+        showFormErrors([]);
+        nameEl.focus();
+      }, { passive: false });
+
+      // Live validation to clear errors as user types/selects
+      nameEl.addEventListener('input', () => { setError(nameEl, validateName()); showFormErrors([]); });
+      ageEl.addEventListener('input', () => { setError(ageEl, validateAge()); showFormErrors([]); });
+      typeEl.addEventListener('change', () => { setError(typeEl, validateType()); showFormErrors([]); });
+      locationEl.addEventListener('input', () => { setError(locationEl, validateLocation()); showFormErrors([]); });
+    })();
+  </script>
+ </body>
+</html>
