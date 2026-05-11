@@ -234,6 +234,8 @@
     .success-message { background: #143b1f; color: #b7f0ba; padding: .6rem .75rem; border-radius:6px; margin-top: .5rem; }
     button.btn { padding:.6rem .9rem; background:var(--accent); color:#fff; border:none; border-radius:6px; cursor:pointer; }
     button.btn:focus{ outline:3px solid #ffbf47; outline-offset:2px; }
+    .download-link { display: inline-block; margin-top: .5rem; color: #b7f0ba; text-decoration: underline; cursor: pointer; }
+    .download-link:hover { color: #fff; }
   </style>
 </head>
 <body>
@@ -242,10 +244,15 @@
 
   <header>
     <div class="wrap">
-+      <div class="header-brand">
-+        <img src="images/header.jpg" alt="Stylised car illustration" class="header-image" width="48" height="48" loading="eager">
-+        <h1>CARZ</h1>
-+      </div>
+      <div class="header-brand">
+        <svg class="header-image" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" style="background: linear-gradient(135deg, #0b5cff, #0b5cff);">
+          <circle cx="12" cy="35" r="5" fill="white"/>
+          <circle cx="36" cy="35" r="5" fill="white"/>
+          <path d="M 8 22 L 10 12 Q 10 8 14 8 L 34 8 Q 38 8 38 12 L 40 22 Z" fill="white"/>
+          <rect x="8" y="22" width="32" height="10" rx="2" fill="white" opacity="0.8"/>
+        </svg>
+        <h1>CARZ</h1>
+      </div>
       <nav aria-label="Primary navigation">
         <ul>
           <li><a href="#types">Car Types</a></li>
@@ -272,19 +279,34 @@
       <h2 id="types-title">Car Types</h2>
       <div class="grid" role="list">
         <article class="card" role="listitem" aria-labelledby="sedan">
-          <img src="images/sedan.jpg" class="card-img" loading="lazy" width="800" height="450" >
+          <svg class="card-img" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+            <circle cx="180" cy="320" r="60" fill="#444"/>
+            <circle cx="620" cy="320" r="60" fill="#444"/>
+            <path d="M 150 280 L 200 150 Q 250 100 400 100 Q 550 100 600 150 L 650 280 Z" fill="#0b5cff"/>
+            <rect x="150" y="280" width="500" height="80" rx="10" fill="#0b5cff" opacity="0.9"/>
+          </svg>
           <h3 id="sedan">Sedan</h3>
           <p>A comfortable passenger car with four doors and a separate boot, suited for family transport.</p>
         </article>
 
         <article class="card" role="listitem" aria-labelledby="suv">
-          <img src="images/suv.jpg" class="card-img" loading="lazy" width="800" height="450" >
+          <svg class="card-img" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+            <circle cx="160" cy="300" r="55" fill="#444"/>
+            <circle cx="640" cy="300" r="55" fill="#444"/>
+            <path d="M 120 260 L 180 100 Q 250 50 400 50 Q 550 50 620 100 L 680 260 Z" fill="#ff6b35"/>
+            <rect x="120" y="260" width="560" height="90" rx="5" fill="#ff6b35" opacity="0.9"/>
+          </svg>
           <h3 id="suv">SUV</h3>
           <p>Taller vehicles with increased ground clearance and more interior space—often with light off-road capability.</p>
         </article>
 
         <article class="card" role="listitem" aria-labelledby="sportscar">
-          <img src="images/sportscar.jpg" class="card-img" loading="lazy" width="800" height="450" >
+          <svg class="card-img" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+            <circle cx="200" cy="310" r="50" fill="#444"/>
+            <circle cx="600" cy="310" r="50" fill="#444"/>
+            <path d="M 180 270 L 220 120 Q 280 60 400 60 Q 520 60 580 120 L 620 270 Z" fill="#ffd60a"/>
+            <rect x="180" y="270" width="440" height="75" rx="15" fill="#ffd60a" opacity="0.9"/>
+          </svg>
           <h3 id="sportscar">Sports Car</h3>
           <p>Performance-focused cars prioritizing power, handling, and reduced weight—often two-seaters.</p>
         </article>
@@ -297,25 +319,47 @@
       <div class="grid" role="list">
         <article class="card" role="listitem" aria-labelledby="engine">
           <h3 id="engine">Engine</h3>
-    <img src="images/engine.jpg" class="card-img" loading="lazy" width="800" height="450" >
+          <svg class="card-img" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" style="background: linear-gradient(135deg, #0f0f10, #1a1a2e);">
+            <rect x="200" y="100" width="400" height="250" rx="20" fill="#0b5cff" opacity="0.8"/>
+            <circle cx="300" cy="180" r="40" fill="#444"/>
+            <circle cx="500" cy="180" r="40" fill="#444"/>
+            <rect x="250" y="260" width="300" height="60" fill="#666"/>
+          </svg>
           <p>The engine converts fuel or electrical energy into motion that turns the wheels.</p>
         </article>
 
         <article class="card" role="listitem" aria-labelledby="transmission">
           <h3 id="transmission">Transmission</h3>
-          <img src="images/transmission.jpg" class="card-img" loading="lazy" width="800" height="450" >
+          <svg class="card-img" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" style="background: linear-gradient(135deg, #0f0f10, #1a1a2e);">
+            <rect x="150" y="80" width="500" height="300" rx="15" fill="#ff6b35" opacity="0.8"/>
+            <circle cx="250" cy="150" r="35" fill="#444"/>
+            <circle cx="400" cy="150" r="35" fill="#444"/>
+            <circle cx="550" cy="150" r="35" fill="#444"/>
+            <rect x="200" y="250" width="400" height="80" rx="10" fill="#666"/>
+          </svg>
           <p>Transfers power from the engine to the wheels and allows speed control through gears.</p>
         </article>
 
         <article class="card" role="listitem" aria-labelledby="brakes">
           <h3 id="brakes">Brakes</h3>
-          <img src="images/brakes.jpg" class="card-img" loading="lazy" width="800" height="450">
+          <svg class="card-img" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" style="background: linear-gradient(135deg, #0f0f10, #1a1a2e);">
+            <circle cx="250" cy="225" r="80" fill="#888"/>
+            <circle cx="250" cy="225" r="60" fill="#c62828"/>
+            <circle cx="550" cy="225" r="80" fill="#888"/>
+            <circle cx="550" cy="225" r="60" fill="#c62828"/>
+            <rect x="280" y="100" width="240" height="40" fill="#666"/>
+          </svg>
           <p>Slows or stops the vehicle using friction at the wheels; controlled by the brake pedal.</p>
         </article>
 
         <article class="card" role="listitem" aria-labelledby="chassis">
           <h3 id="chassis">Chassis &amp; Body</h3>
-          <img src="images/body.jpg" class="card-img" loading="lazy" width="800" height="450" >
+          <svg class="card-img" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" style="background: linear-gradient(135deg, #0f0f10, #1a1a2e);">
+            <path d="M 150 200 L 250 100 L 550 100 L 650 200 L 650 300 L 150 300 Z" fill="none" stroke="#ffd60a" stroke-width="8"/>
+            <line x1="150" y1="200" x2="650" y2="200" stroke="#ffd60a" stroke-width="4"/>
+            <line x1="200" y1="100" x2="200" y2="300" stroke="#ffd60a" stroke-width="4"/>
+            <line x1="600" y1="100" x2="600" y2="300" stroke="#ffd60a" stroke-width="4"/>
+          </svg>
           <p>The structural frame that supports components and protects passengers.</p>
         </article>
       </div>
@@ -364,22 +408,22 @@
     <!-- History -->
     <section id="history" aria-labelledby="history-title">
       <h2 id="history-title">Brief History of Cars</h2>
-      <p> Cars evolved from experimental steam vehicles into today’s complex, computerised machines over roughly 250 years.
+      <p> Cars evolved from experimental steam vehicles into today's complex, computerised machines over roughly 250 years.
  Early experiments (1700s–1800s)</p>
       <p>
 - In 1769, Nicolas-Joseph Cugnot built a three wheeled steam vehicle, often considered the first self propelled road vehicle.
 - Steam carriages appeared in Europe in the late 18th and early 19th centuries, but they were heavy, slow, and impractical for everyday use.
-- Inventors also tried early internal combustion and electric vehicles in the 1800s, including François Isaac de Rivaz’s combustion powered design in 1808 and Gustave Trouvé’s electric tricycle in 1881.
+- Inventors also tried early internal combustion and electric vehicles in the 1800s, including François Isaac de Rivaz's combustion powered design in 1808 and Gustave Trouvé's electric tricycle in 1881.
 </p>
 <p> Birth of the modern car (1880s–1910s) </p>
 <p> - The modern car is usually dated to 1886, when Karl Benz patented the Benz Patent Motorwagen, a three wheeled, gasoline powered vehicle designed for regular road use.
-- Bertha Benz’s famous long distance drive in 1888 demonstrated that the car was reliable enough for real travel and helped create public interest.
-- By 1900, manufacturers in Germany, France, and the United States were producing cars in small series, and designs began to standardise with front mounted engines, gearboxes, and rear wheel drive (the “Système Panhard”).
+- Bertha Benz's famous long distance drive in 1888 demonstrated that the car was reliable enough for real travel and helped create public interest.
+- By 1900, manufacturers in Germany, France, and the United States were producing cars in small series, and designs began to standardise with front mounted engines, gearboxes, and rear wheel drive (the "Système Panhard").
 </p>
 <p> 
  Mass production and everyday use (1900s–1950s)
 </p>
-<P> - Ransom Olds’ Curved Dash Oldsmobile (1901) and then Henry Ford’s Model T (1908) introduced assembly line manufacturing, making cars much cheaper and accessible to ordinary people.
+<P> - Ransom Olds' Curved Dash Oldsmobile (1901) and then Henry Ford's Model T (1908) introduced assembly line manufacturing, making cars much cheaper and accessible to ordinary people.
 - Early cars lacked features like windshields, doors, seat belts, and electric starters; these were gradually added in the early 20th century, improving comfort and safety.
 - By the 1920s and 1930s, cars with stronger engines (such as V8s), enclosed bodies, and more reliable brakes brought higher speeds and longer trips, embedding car travel into everyday life.
 </P>
@@ -391,7 +435,7 @@
  <p> Digital era and future directions (2000s–today) </p>
  <p>- Modern cars rely heavily on electronics, using computer networks for engine management, stability control, infotainment, and advanced driver assistance systems like lane keeping and automatic emergency braking.
 - Hybrid and fully electric cars have moved from niche products to mainstream options, revisiting early electric ideas but with modern batteries and software.
-- Current development focuses on cleaner propulsion (electric and alternative fuels), connectivity, and varying levels of self driving capability, continuing the long evolution from simple steam carriages to today’s highly integrated vehicles.
+- Current development focuses on cleaner propulsion (electric and alternative fuels), connectivity, and varying levels of self driving capability, continuing the long evolution from simple steam carriages to today's highly integrated vehicles.
  </p>
       <p><strong><time datetime="1880">Late 1800s:</time></strong> Early experimental cars used steam, electricity, and gasoline engines.</p>
       <p><strong><time datetime="1900">Early 1900s:</time></strong> Mass production, including moving assembly lines, made cars more affordable.</p>
@@ -431,7 +475,7 @@
         if (v.length < 2) return 'Please enter a longer name (at least 2 characters).';
         if (v.length > 70) return 'Name is too long (max 70 characters).';
         // Allow letters, combining marks, spaces, apostrophes, hyphens, dots
-        if (!/^[\p{L}\p{M}\s'’\-\.]+$/u.test(v)) return 'Name contains invalid characters.';
+        if (!/^[\p{L}\p{M}\s''\-\.]+$/u.test(v)) return 'Name contains invalid characters.';
         return '';
       }
 
@@ -475,6 +519,72 @@
         errorsEl.innerHTML = '<ul><li>' + list.map(e => e).join('</li><li>') + '</li></ul>';
       }
 
+      function generateAndDownloadImage(name, carType, location) {
+        // Create a canvas element
+        const canvas = document.createElement('canvas');
+        canvas.width = 800;
+        canvas.height = 600;
+        const ctx = canvas.getContext('2d');
+
+        // Background gradient
+        const gradient = ctx.createLinearGradient(0, 0, 800, 600);
+        gradient.addColorStop(0, '#0b0b0b');
+        gradient.addColorStop(1, '#1a1a2e');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, 800, 600);
+
+        // Title
+        ctx.fillStyle = '#c62828';
+        ctx.font = 'bold 48px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('🚗 CAR REQUEST CONFIRMATION 🚗', 400, 80);
+
+        // Border
+        ctx.strokeStyle = '#0b5cff';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(40, 120, 720, 450);
+
+        // Request details
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 24px Arial';
+        ctx.textAlign = 'left';
+        
+        const details = [
+          { label: 'Name:', value: name, y: 180 },
+          { label: 'Car Type:', value: carType, y: 260 },
+          { label: 'Location:', value: location, y: 340 },
+          { label: 'Date:', value: new Date().toLocaleDateString(), y: 420 }
+        ];
+
+        details.forEach(item => {
+          ctx.fillStyle = '#0b5cff';
+          ctx.font = 'bold 20px Arial';
+          ctx.fillText(item.label, 80, item.y);
+          
+          ctx.fillStyle = '#b7f0ba';
+          ctx.font = '20px Arial';
+          ctx.fillText(item.value, 320, item.y);
+        });
+
+        // Footer message
+        ctx.fillStyle = '#ffd60a';
+        ctx.font = 'italic 18px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('Thank you for your request! Your car will be ready soon.', 400, 550);
+
+        // Download the image
+        canvas.toBlob(function(blob) {
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `car-request-${name.replace(/\s+/g, '-')}.png`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        });
+      }
+
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         const errors = [];
@@ -495,9 +605,17 @@
           return;
         }
 
-        // All good — show a simple success message (no server submission here).
+        // All good — show a success message and download image
+        const userName = nameEl.value.trim();
+        const carType = typeEl.value;
+        const location = locationEl.value.trim();
+
         successEl.style.display = 'block';
-        successEl.textContent = `Thanks, ${nameEl.value.trim()}. Request received for a ${typeEl.value} in ${locationEl.value.trim()}.`;
+        successEl.innerHTML = `Thanks, ${userName}. Request received for a ${carType} in ${location}.<br><span class="download-link">📥 Image downloaded!</span>`;
+        
+        // Generate and download the image
+        generateAndDownloadImage(userName, carType, location);
+
         form.reset();
         [nameEl, ageEl, typeEl, locationEl].forEach(el => setError(el, ''));
         showFormErrors([]);
